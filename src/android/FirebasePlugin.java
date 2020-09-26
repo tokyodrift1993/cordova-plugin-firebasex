@@ -1456,6 +1456,25 @@ public class FirebasePlugin extends CordovaPlugin {
         });
     }
 
+    public void setLanguageCode(final CallbackContext callbackContext, final JSONArray args){
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    String lang = args.getString(0);
+
+                    if(lang == null || lang.equals("")){
+                        callbackContext.error("Lang must be specified");
+                        return;
+                    }
+
+                    FirebaseAuth.getInstance().setLanguageCode("fr");
+                } catch (Exception e) {
+                    handleExceptionWithContext(e, callbackContext);
+                }
+            }
+        });
+    }
+
     public void createUserWithEmailAndPassword(final CallbackContext callbackContext, final JSONArray args){
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
