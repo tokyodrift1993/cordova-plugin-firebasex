@@ -259,6 +259,8 @@ public class FirebasePlugin extends CordovaPlugin {
 
             } else if (action.equals("verifyPhoneNumber")) {
                 this.verifyPhoneNumber(callbackContext, args);
+            } else if (action.equals("setLanguageCode")) {
+                this.setLanguageCode(callbackContext, args);
             } else if (action.equals("authenticateUserWithGoogle")) {
                 this.authenticateUserWithGoogle(callbackContext, args);
             } else if (action.equals("authenticateUserWithApple")) {
@@ -1467,14 +1469,16 @@ public class FirebasePlugin extends CordovaPlugin {
                         return;
                     }
 
-                    FirebaseAuth.getInstance().setLanguageCode("fr");
+                    FirebaseAuth.getInstance().setLanguageCode(lang);
+
+                    Log.d(TAG, "Language code setted to "+lang);
                 } catch (Exception e) {
                     handleExceptionWithContext(e, callbackContext);
                 }
             }
         });
     }
-
+    
     public void createUserWithEmailAndPassword(final CallbackContext callbackContext, final JSONArray args){
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
