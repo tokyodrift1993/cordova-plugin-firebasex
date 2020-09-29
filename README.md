@@ -2558,14 +2558,7 @@ Sets the user-facing language code for auth operations that can be international
 Example usage:
 
 ```javascript
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
-    constructor(
-        private fireNative: FirebaseX,
-    ) {
-    }
-    ngOnInit() {
-        this.fireNative.setLanguageCode(this.globalService.getLang());
-    }
+    FirebasePlugin.setLanguageCode('fr'); // will switch to french
 ```
 
 ### authenticateUserWithEmailAndPassword
